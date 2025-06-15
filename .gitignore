@@ -1,0 +1,100 @@
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# dependencies
+/node_modules
+/.pnp
+.pnp.*
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/versions
+
+# testing
+/coverage
+
+# next.js
+/.next/
+/out/
+
+# production
+/build
+
+# misc
+.DS_Store
+*.pem
+
+# debug
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+
+# env files (can opt-in for committing if needed)
+.env*
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# API Keys and Secrets
+*.key
+service-account.json
+google-cloud-key.json
+gcloud-service-key.json
+config/secrets.json
+
+# Google Cloud
+.gcloud/
+.google/
+
+# Database files
+*.db
+*.sqlite
+*.sqlite3
+
+# vercel
+.vercel
+
+# typescript
+*.tsbuildinfo
+next-env.d.ts
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS files
+Thumbs.db
+ehthumbs.db
+
+# Build artifacts
+dist/
+build/
+out/
+
+# Logs
+*.log
+logs/
+
+# Temporary files
+tmp/
+temp/
+*.tmp
+*.temp
+
+# Archive files
+*.zip
+*.rar
+*.tar.gz
+
+# Certificate files
+*.crt
+*.cert
+*.pem
+
+# Lock files (keep pnpm-lock.yaml)
+package-lock.json
+yarn.lock
