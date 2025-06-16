@@ -1,6 +1,6 @@
 # CineAI - AI-Powered Movie Discovery Platform
 
-🎬 **AI in Action Hackathon 2024** 🏆
+🎬 **AI in Action Hackathon 2025** 🏆
 
 CineAI is an intelligent movie discovery platform that leverages Google Cloud AI services to provide semantic movie search, multi-language support, and AI-generated insights.
 

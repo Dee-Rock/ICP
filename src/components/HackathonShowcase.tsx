@@ -91,7 +91,7 @@ export default function HackathonShowcase({ isVisible, onClose }: ShowcaseProps)
                 <h1 className="text-3xl font-bold bg-gradient-to-r from-red-500 to-purple-500 bg-clip-text text-transparent">
                   CineAI Hackathon Demo
                 </h1>
-                <p className="text-gray-400">AI in Action Hackathon 2024 - Advanced Movie Discovery Platform</p>
+                <p className="text-gray-400">AI in Action Hackathon 2025 - Advanced Movie Discovery Platform</p>
               </div>
             </div>
             <button

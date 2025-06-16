@@ -32,7 +32,7 @@ export default function Home() {
   const [filtersOpen, setFiltersOpen] = useState(false);
   const [filters, setFilters] = useState<MovieFilters>({
     genres: [],
-    yearRange: [1990, 2024],
+    yearRange: [1990, 2025],
     minRating: 0,
     maxRuntime: 300,
     streamingPlatforms: [],
@@ -530,7 +530,7 @@ export default function Home() {
                       <input
                         type="number"
                         min="1990"
-                        max="2024"
+                        max="2025"
                         value={filters.yearRange[0]}
                         onChange={(e) => handleFiltersChange({
                           ...filters,
@@ -541,7 +541,7 @@ export default function Home() {
                       <input
                         type="number"
                         min="1990"
-                        max="2024"
+                        max="2025"
                         value={filters.yearRange[1]}
                         onChange={(e) => handleFiltersChange({
                           ...filters,
@@ -608,12 +608,12 @@ export default function Home() {
                       </span>
                     )}
                   </div>
-                  {(filters.genres.length > 0 || filters.minRating > 0 || filters.streamingPlatforms.length > 0 || filters.yearRange[0] > 1990 || filters.yearRange[1] < 2024) && (
+                  {(filters.genres.length > 0 || filters.minRating > 0 || filters.streamingPlatforms.length > 0 || filters.yearRange[0] > 1990 || filters.yearRange[1] < 2025) && (
                     <button
                       onClick={() => {
                         const clearedFilters: MovieFilters = {
                           genres: [],
-                          yearRange: [1990, 2024],
+                          yearRange: [1990, 2025],
                           minRating: 0,
                           maxRuntime: 300,
                           streamingPlatforms: [],
@@ -957,7 +957,7 @@ export default function Home() {
             <span className="text-green-400 font-semibold"> Google Cloud Translation API</span>
           </p>
           <p className="text-gray-500 text-sm">
-            🏆 Created for the AI in Action Hackathon 2024
+            🏆 Created for the AI in Action Hackathon 2025
           </p>
           <div className="mt-6 flex flex-wrap items-center justify-center gap-4 sm:gap-6 text-xs sm:text-sm text-gray-400">
             <div className="flex items-center gap-2">
