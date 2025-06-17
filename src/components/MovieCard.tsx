@@ -7,9 +7,10 @@ import Image from 'next/image';
 interface MovieCardProps {
   movie: Movie;
   onMovieClick?: (movie: Movie) => void;
+  onCompareClick?: (movie: Movie) => void;
 }
 
-export default function MovieCard({ movie, onMovieClick }: MovieCardProps) {
+export default function MovieCard({ movie, onMovieClick, onCompareClick }: MovieCardProps) {
   const handleClick = () => {
     if (onMovieClick) {
       onMovieClick(movie);
@@ -74,10 +75,26 @@ export default function MovieCard({ movie, onMovieClick }: MovieCardProps) {
           </div>
         )}
 
-        {/* Hover Play Button */}
+        {/* Hover Action Buttons */}
         <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-          <div className="w-12 h-12 sm:w-16 sm:h-16 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center border border-white/30">
-            <span className="text-white text-lg sm:text-2xl ml-1">▶️</span>
+          <div className="flex gap-2">
+            <div className="w-10 h-10 sm:w-12 sm:h-12 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center border border-white/30 hover:bg-purple-500/30 transition-colors cursor-pointer"
+                 onClick={(e) => {
+                   e.stopPropagation();
+                   if (onMovieClick) onMovieClick(movie);
+                 }}>
+              <span className="text-white text-sm sm:text-lg">▶️</span>
+            </div>
+            {onCompareClick && (
+              <div className="w-10 h-10 sm:w-12 sm:h-12 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center border border-white/30 hover:bg-green-500/30 transition-colors cursor-pointer"
+                   onClick={(e) => {
+                     e.stopPropagation();
+                     onCompareClick(movie);
+                   }}
+                   title="Add to comparison">
+                <span className="text-white text-sm sm:text-lg">⚔️</span>
+              </div>
+            )}
           </div>
         </div>
       </div>

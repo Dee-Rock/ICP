@@ -4,6 +4,9 @@ import { useState, useEffect } from 'react';
 import SearchBar from '@/components/SearchBar';
 import MovieCard from '@/components/MovieCard';
 import HackathonShowcase from '@/components/HackathonShowcase';
+import AnalyticsDashboard from '@/components/AnalyticsDashboard';
+import SmartRecommendations from '@/components/SmartRecommendations';
+import MovieComparison from '@/components/MovieComparison';
 import { MovieFilters } from '@/components/FilterSidebar';
 
 import { Movie, SearchResult } from '@/lib/mongodb';
@@ -28,6 +31,11 @@ export default function Home() {
   });
   const [showHackathonDemo, setShowHackathonDemo] = useState(false);
   const [selectedLanguage, setSelectedLanguage] = useState('en');
+  const [showAnalytics, setShowAnalytics] = useState(false);
+  const [showSmartRecommendations, setShowSmartRecommendations] = useState(false);
+  const [showComparison, setShowComparison] = useState(false);
+  const [comparisonMovie1, setComparisonMovie1] = useState<Movie | undefined>();
+  const [comparisonMovie2, setComparisonMovie2] = useState<Movie | undefined>();
   const [featuredMovies, setFeaturedMovies] = useState<Movie[]>([]);
   const [filtersOpen, setFiltersOpen] = useState(false);
   const [filters, setFilters] = useState<MovieFilters>({
@@ -301,6 +309,22 @@ export default function Home() {
     loadAIAnalysis(movie, 'themes');
   };
 
+  const handleCompareMovie = (movie: Movie) => {
+    if (!comparisonMovie1) {
+      setComparisonMovie1(movie);
+      console.log(`Added "${movie.title}" to comparison slot 1`);
+    } else if (!comparisonMovie2) {
+      setComparisonMovie2(movie);
+      console.log(`Added "${movie.title}" to comparison slot 2`);
+    } else {
+      // If both slots are filled, replace the first one
+      setComparisonMovie1(movie);
+      setComparisonMovie2(undefined);
+      console.log(`Replaced comparison slot 1 with "${movie.title}"`);
+    }
+    setShowComparison(true);
+  };
+
   const loadAIAnalysis = async (movie: Movie, analysisType: string) => {
     setAnalysisLoading(true);
     setCurrentAnalysisType(analysisType);
@@ -362,16 +386,67 @@ export default function Home() {
               <span className="text-red-400 font-semibold block sm:inline"> personalized recommendations</span>
             </p>
 
-            {/* Hackathon Demo Button */}
+            {/* Action Buttons */}
             <div className="mt-4 sm:mt-6">
-              <button
-                onClick={() => setShowHackathonDemo(true)}
-                className="px-4 sm:px-6 py-2 sm:py-3 bg-gradient-to-r from-yellow-600 to-orange-600 text-white rounded-xl hover:from-yellow-700 hover:to-orange-700 transition-all duration-300 font-semibold shadow-lg hover:shadow-yellow-500/25 transform hover:scale-105 flex items-center gap-2 mx-auto text-sm sm:text-base"
-              >
-                <span className="text-base sm:text-lg">🏆</span>
-                <span>Hackathon Demo</span>
-                <span className="text-xs sm:text-sm bg-white/20 px-1 sm:px-2 py-1 rounded-full">NEW</span>
-              </button>
+              {/* Mobile: Stacked Layout */}
+              <div className="flex flex-col gap-3 sm:hidden">
+                <button
+                  onClick={() => setShowHackathonDemo(true)}
+                  className="px-4 py-3 bg-gradient-to-r from-yellow-600 to-orange-600 text-white rounded-xl hover:from-yellow-700 hover:to-orange-700 transition-all duration-300 font-semibold shadow-lg hover:shadow-yellow-500/25 flex items-center justify-center gap-2 text-sm"
+                >
+                  <span className="text-base">🏆</span>
+                  <span>Hackathon Demo</span>
+                  <span className="text-xs bg-white/20 px-2 py-1 rounded-full">NEW</span>
+                </button>
+
+                <div className="grid grid-cols-2 gap-3">
+                  <button
+                    onClick={() => setShowAnalytics(true)}
+                    className="px-3 py-3 bg-gradient-to-r from-blue-600 to-cyan-600 text-white rounded-xl hover:from-blue-700 hover:to-cyan-700 transition-all duration-300 font-semibold shadow-lg hover:shadow-blue-500/25 flex items-center justify-center gap-2 text-xs"
+                  >
+                    <span className="text-sm">📊</span>
+                    <span>Analytics</span>
+                  </button>
+
+                  <button
+                    onClick={() => setShowComparison(true)}
+                    className="px-3 py-3 bg-gradient-to-r from-green-600 to-emerald-600 text-white rounded-xl hover:from-green-700 hover:to-emerald-700 transition-all duration-300 font-semibold shadow-lg hover:shadow-green-500/25 flex items-center justify-center gap-2 text-xs"
+                  >
+                    <span className="text-sm">⚔️</span>
+                    <span>Compare</span>
+                  </button>
+                </div>
+              </div>
+
+              {/* Desktop: Horizontal Layout */}
+              <div className="hidden sm:flex flex-wrap justify-center gap-3">
+                <button
+                  onClick={() => setShowHackathonDemo(true)}
+                  className="px-6 py-3 bg-gradient-to-r from-yellow-600 to-orange-600 text-white rounded-xl hover:from-yellow-700 hover:to-orange-700 transition-all duration-300 font-semibold shadow-lg hover:shadow-yellow-500/25 transform hover:scale-105 flex items-center gap-2 text-base"
+                >
+                  <span className="text-lg">🏆</span>
+                  <span>Hackathon Demo</span>
+                  <span className="text-sm bg-white/20 px-2 py-1 rounded-full">NEW</span>
+                </button>
+
+                <button
+                  onClick={() => setShowAnalytics(true)}
+                  className="px-6 py-3 bg-gradient-to-r from-blue-600 to-cyan-600 text-white rounded-xl hover:from-blue-700 hover:to-cyan-700 transition-all duration-300 font-semibold shadow-lg hover:shadow-blue-500/25 transform hover:scale-105 flex items-center gap-2 text-base"
+                >
+                  <span className="text-lg">📊</span>
+                  <span>Analytics Dashboard</span>
+                  <span className="text-sm bg-white/20 px-2 py-1 rounded-full">LIVE</span>
+                </button>
+
+                <button
+                  onClick={() => setShowComparison(true)}
+                  className="px-6 py-3 bg-gradient-to-r from-green-600 to-emerald-600 text-white rounded-xl hover:from-green-700 hover:to-emerald-700 transition-all duration-300 font-semibold shadow-lg hover:shadow-green-500/25 transform hover:scale-105 flex items-center gap-2 text-base"
+                >
+                  <span className="text-lg">⚔️</span>
+                  <span>Movie Comparison</span>
+                  <span className="text-sm bg-white/20 px-2 py-1 rounded-full">AI</span>
+                </button>
+              </div>
             </div>
             <div className="mt-4 sm:mt-6 grid grid-cols-2 lg:grid-cols-4 gap-2 sm:gap-3 max-w-4xl mx-auto px-2 sm:px-0">
               <div className="bg-gray-800/50 backdrop-blur-lg rounded-lg sm:rounded-xl p-3 sm:p-4 border border-green-500/30">
@@ -638,6 +713,7 @@ export default function Home() {
                     key={movie._id}
                     movie={movie}
                     onMovieClick={handleMovieClick}
+                    onCompareClick={handleCompareMovie}
                   />
                 ))}
               </div>
@@ -673,6 +749,7 @@ export default function Home() {
                   key={movie._id}
                   movie={movie}
                   onMovieClick={handleMovieClick}
+                  onCompareClick={handleCompareMovie}
                 />
               ))}
             </div>
@@ -908,7 +985,19 @@ export default function Home() {
                 </div>
             </div>
 
-            {/* Recommendations */}
+            {/* Smart AI Recommendations Button */}
+            <div className="mt-8 text-center">
+              <button
+                onClick={() => setShowSmartRecommendations(!showSmartRecommendations)}
+                className="px-6 py-3 bg-gradient-to-r from-purple-600 to-pink-600 text-white rounded-xl hover:from-purple-700 hover:to-pink-700 transition-all duration-300 font-semibold shadow-lg hover:shadow-purple-500/25 transform hover:scale-105 flex items-center gap-3 mx-auto"
+              >
+                <span className="text-xl">🧠</span>
+                <span>{showSmartRecommendations ? 'Hide' : 'Show'} Smart AI Recommendations</span>
+                <span className="text-sm bg-white/20 px-2 py-1 rounded-full">AI POWERED</span>
+              </button>
+            </div>
+
+            {/* Basic Recommendations */}
             <div className="mt-8 bg-gray-800/50 p-6 rounded-xl border border-gray-700">
               <h3 className="text-xl font-bold text-white mb-4 flex items-center gap-2">
                 <span>🎯</span>
@@ -921,6 +1010,7 @@ export default function Home() {
                       key={movie._id}
                       movie={movie}
                       onMovieClick={handleMovieClick}
+                      onCompareClick={handleCompareMovie}
                     />
                   ))}
                 </div>
@@ -938,9 +1028,15 @@ export default function Home() {
             </div>
           </section>
         )}
+
+        {/* Smart AI Recommendations */}
+        {selectedMovie && showSmartRecommendations && (
+          <SmartRecommendations
+            movie={selectedMovie}
+            onMovieClick={handleMovieClick}
+          />
+        )}
       </main>
-
-
 
       {/* Footer */}
       <footer className="bg-gradient-to-r from-black via-gray-900 to-black border-t border-gray-700 py-12">
@@ -981,6 +1077,25 @@ export default function Home() {
       <HackathonShowcase
         isVisible={showHackathonDemo}
         onClose={() => setShowHackathonDemo(false)}
+      />
+
+      {/* Analytics Dashboard */}
+      <AnalyticsDashboard
+        isOpen={showAnalytics}
+        onClose={() => setShowAnalytics(false)}
+      />
+
+      {/* Movie Comparison */}
+      <MovieComparison
+        isOpen={showComparison}
+        onClose={() => setShowComparison(false)}
+        movie1={comparisonMovie1}
+        movie2={comparisonMovie2}
+        onMovieSelect={(slot, movie) => {
+          if (slot === 1) setComparisonMovie1(movie);
+          else setComparisonMovie2(movie);
+        }}
+        availableMovies={searchResults?.movies || featuredMovies}
       />
     </div>
   );
