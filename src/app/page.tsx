@@ -347,59 +347,60 @@ export default function Home() {
     <div className="min-h-screen bg-gradient-to-br from-gray-900 via-black to-gray-800">
       {/* Modern Header */}
       <header className="bg-gradient-to-r from-black via-gray-900 to-black border-b border-gray-700 backdrop-blur-lg">
-        <div className="max-w-7xl mx-auto px-4 py-6">
+        <div className="max-w-7xl mx-auto px-4 py-4 sm:py-6">
           <div className="text-center">
-            <h1 className="text-5xl font-bold mb-3 flex items-center justify-center gap-4">
-              <span className="text-6xl">🎬</span>
+            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-2 sm:mb-3 flex items-center justify-center gap-2 sm:gap-4">
+              <span className="text-4xl sm:text-5xl lg:text-6xl">🎬</span>
               <span className="bg-gradient-to-r from-red-500 via-purple-500 to-pink-500 bg-clip-text text-transparent">
                 CineAI
               </span>
-              <span className="text-yellow-400 text-4xl animate-pulse">✨</span>
+              <span className="text-yellow-400 text-2xl sm:text-3xl lg:text-4xl animate-pulse">✨</span>
             </h1>
-            <p className="text-gray-300 text-xl font-light max-w-3xl mx-auto">
-              Discover movies with <span className="text-purple-400 font-semibold">Google Cloud AI-powered semantic search</span> and
-              <span className="text-red-400 font-semibold"> personalized recommendations</span>
+            <p className="text-gray-300 text-sm sm:text-lg lg:text-xl font-light max-w-3xl mx-auto px-2">
+              Discover movies with <span className="text-purple-400 font-semibold">Google Cloud AI-powered semantic search</span>
+              <span className="hidden sm:inline"> and</span>
+              <span className="text-red-400 font-semibold block sm:inline"> personalized recommendations</span>
             </p>
 
             {/* Hackathon Demo Button */}
-            <div className="mt-6">
+            <div className="mt-4 sm:mt-6">
               <button
                 onClick={() => setShowHackathonDemo(true)}
-                className="px-6 py-3 bg-gradient-to-r from-yellow-600 to-orange-600 text-white rounded-xl hover:from-yellow-700 hover:to-orange-700 transition-all duration-300 font-semibold shadow-lg hover:shadow-yellow-500/25 transform hover:scale-105 flex items-center gap-2 mx-auto"
+                className="px-4 sm:px-6 py-2 sm:py-3 bg-gradient-to-r from-yellow-600 to-orange-600 text-white rounded-xl hover:from-yellow-700 hover:to-orange-700 transition-all duration-300 font-semibold shadow-lg hover:shadow-yellow-500/25 transform hover:scale-105 flex items-center gap-2 mx-auto text-sm sm:text-base"
               >
-                <span className="text-lg">🏆</span>
+                <span className="text-base sm:text-lg">🏆</span>
                 <span>Hackathon Demo</span>
-                <span className="text-sm bg-white/20 px-2 py-1 rounded-full">NEW</span>
+                <span className="text-xs sm:text-sm bg-white/20 px-1 sm:px-2 py-1 rounded-full">NEW</span>
               </button>
             </div>
-            <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 max-w-4xl mx-auto">
-              <div className="bg-gray-800/50 backdrop-blur-lg rounded-xl p-4 border border-green-500/30">
-                <div className="flex items-center gap-2 mb-1">
-                  <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+            <div className="mt-4 sm:mt-6 grid grid-cols-2 lg:grid-cols-4 gap-2 sm:gap-3 max-w-4xl mx-auto px-2 sm:px-0">
+              <div className="bg-gray-800/50 backdrop-blur-lg rounded-lg sm:rounded-xl p-3 sm:p-4 border border-green-500/30">
+                <div className="flex items-center gap-1 sm:gap-2 mb-1">
+                  <div className="w-1.5 sm:w-2 h-1.5 sm:h-2 bg-green-500 rounded-full animate-pulse"></div>
                   <span className="text-green-400 text-xs font-semibold">SEARCHES</span>
                 </div>
-                <div className="text-white text-xl font-bold">{realTimeStats.totalSearches.toLocaleString()}</div>
+                <div className="text-white text-lg sm:text-xl font-bold">{realTimeStats.totalSearches.toLocaleString()}</div>
               </div>
-              <div className="bg-gray-800/50 backdrop-blur-lg rounded-xl p-4 border border-blue-500/30">
-                <div className="flex items-center gap-2 mb-1">
-                  <div className="w-2 h-2 bg-blue-500 rounded-full animate-pulse"></div>
-                  <span className="text-blue-400 text-xs font-semibold">VECTOR QUERIES</span>
+              <div className="bg-gray-800/50 backdrop-blur-lg rounded-lg sm:rounded-xl p-3 sm:p-4 border border-blue-500/30">
+                <div className="flex items-center gap-1 sm:gap-2 mb-1">
+                  <div className="w-1.5 sm:w-2 h-1.5 sm:h-2 bg-blue-500 rounded-full animate-pulse"></div>
+                  <span className="text-blue-400 text-xs font-semibold">VECTOR</span>
                 </div>
-                <div className="text-white text-xl font-bold">{realTimeStats.vectorQueries.toLocaleString()}</div>
+                <div className="text-white text-lg sm:text-xl font-bold">{realTimeStats.vectorQueries.toLocaleString()}</div>
               </div>
-              <div className="bg-gray-800/50 backdrop-blur-lg rounded-xl p-4 border border-purple-500/30">
-                <div className="flex items-center gap-2 mb-1">
-                  <div className="w-2 h-2 bg-purple-500 rounded-full animate-pulse"></div>
+              <div className="bg-gray-800/50 backdrop-blur-lg rounded-lg sm:rounded-xl p-3 sm:p-4 border border-purple-500/30">
+                <div className="flex items-center gap-1 sm:gap-2 mb-1">
+                  <div className="w-1.5 sm:w-2 h-1.5 sm:h-2 bg-purple-500 rounded-full animate-pulse"></div>
                   <span className="text-purple-400 text-xs font-semibold">AI ANALYSES</span>
                 </div>
-                <div className="text-white text-xl font-bold">{realTimeStats.aiAnalyses.toLocaleString()}</div>
+                <div className="text-white text-lg sm:text-xl font-bold">{realTimeStats.aiAnalyses.toLocaleString()}</div>
               </div>
-              <div className="bg-gray-800/50 backdrop-blur-lg rounded-xl p-4 border border-yellow-500/30">
-                <div className="flex items-center gap-2 mb-1">
-                  <div className="w-2 h-2 bg-yellow-500 rounded-full animate-pulse"></div>
-                  <span className="text-yellow-400 text-xs font-semibold">SATISFACTION</span>
+              <div className="bg-gray-800/50 backdrop-blur-lg rounded-lg sm:rounded-xl p-3 sm:p-4 border border-yellow-500/30">
+                <div className="flex items-center gap-1 sm:gap-2 mb-1">
+                  <div className="w-1.5 sm:w-2 h-1.5 sm:h-2 bg-yellow-500 rounded-full animate-pulse"></div>
+                  <span className="text-yellow-400 text-xs font-semibold">RATING</span>
                 </div>
-                <div className="text-white text-xl font-bold">{realTimeStats.userSatisfaction.toFixed(1)}%</div>
+                <div className="text-white text-lg sm:text-xl font-bold">{realTimeStats.userSatisfaction.toFixed(1)}%</div>
               </div>
             </div>
           </div>
@@ -408,19 +409,19 @@ export default function Home() {
 
       {/* Sticky Search Bar */}
       <div className="sticky top-0 z-40 bg-black/80 backdrop-blur-xl border-b border-gray-700 shadow-2xl">
-        <div className="max-w-7xl mx-auto px-4 py-4">
+        <div className="max-w-7xl mx-auto px-2 sm:px-4 py-2 sm:py-4">
           <SearchBar onSearch={handleSearch} loading={loading} />
         </div>
       </div>
 
       {/* Main Content */}
-      <main className="max-w-7xl mx-auto px-4 py-8 pt-4">
+      <main className="max-w-7xl mx-auto px-2 sm:px-4 py-4 sm:py-8 pt-2 sm:pt-4">
 
         {/* Filter Bar */}
-        <div className="mb-8">
-          <div className="bg-gray-900/50 backdrop-blur-lg rounded-2xl shadow-2xl border border-gray-700 p-6">
-            <div className="flex flex-wrap items-center gap-4">
-              <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
+        <div className="mb-6 sm:mb-8">
+          <div className="bg-gray-900/50 backdrop-blur-lg rounded-xl sm:rounded-2xl shadow-2xl border border-gray-700 p-4 sm:p-6">
+            <div className="flex flex-col gap-3 sm:gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
                 <button
                   onClick={() => setVectorSearchEnabled(!vectorSearchEnabled)}
                   className={`flex items-center justify-center gap-2 px-4 py-3 rounded-xl transition-all duration-300 ${
@@ -450,7 +451,7 @@ export default function Home() {
 
                 <button
                   onClick={() => setFiltersOpen(!filtersOpen)}
-                  className="flex items-center justify-center gap-3 px-6 py-3 bg-gradient-to-r from-purple-600 to-pink-600 text-white rounded-xl hover:from-purple-700 hover:to-pink-700 transition-all duration-300 shadow-lg hover:shadow-purple-500/25 transform hover:scale-105"
+                  className="flex items-center justify-center gap-2 sm:gap-3 px-4 sm:px-6 py-3 bg-gradient-to-r from-purple-600 to-pink-600 text-white rounded-xl hover:from-purple-700 hover:to-pink-700 transition-all duration-300 shadow-lg hover:shadow-purple-500/25 transform hover:scale-105"
                 >
                   <span className="text-lg">🔧</span>
                   <span className="font-semibold text-sm sm:text-base">AI Filters</span>
@@ -631,7 +632,7 @@ export default function Home() {
             </div>
 
             {searchResults.movies.length > 0 ? (
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-8">
+              <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-3 sm:gap-4 lg:gap-6">
                 {searchResults.movies.map((movie) => (
                   <MovieCard
                     key={movie._id}
@@ -666,7 +667,7 @@ export default function Home() {
                 </div>
               </div>
             </div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-8">
+            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-3 sm:gap-4 lg:gap-6">
               {featuredMovies.map((movie) => (
                 <MovieCard
                   key={movie._id}
