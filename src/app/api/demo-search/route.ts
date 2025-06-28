@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 
-// Demo data for hackathon presentation
+// Demo data for Akwaaba Dappathon presentation
 const demoMovies = [
   {
     _id: "1",

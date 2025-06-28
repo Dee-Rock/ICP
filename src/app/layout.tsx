@@ -1,21 +1,11 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
+import { ICPProvider } from "@/contexts/ICPContext";
 
 export const metadata: Metadata = {
-  title: "CineAI - AI-Powered Movie Discovery",
-  description: "Discover movies with advanced AI-powered semantic search, smart recommendations, and real-time analytics. Built with Google Cloud AI for the ultimate movie discovery experience.",
-  keywords: ["movies", "AI", "search", "recommendations", "Google Cloud", "machine learning", "cinema", "films"],
+  title: "CineAI - Web3 AI-Powered Movie Discovery",
+  description: "Discover movies with advanced AI-powered semantic search, smart recommendations, and blockchain-verified reviews. Built with Google Cloud AI and Internet Computer Protocol (ICP) for the ultimate decentralized movie discovery experience.",
+  keywords: ["movies", "AI", "search", "recommendations", "Google Cloud", "machine learning", "cinema", "films", "blockchain", "Web3", "ICP", "Internet Computer", "decentralized", "crypto", "tokens"],
   authors: [{ name: "CineAI Team" }],
   creator: "CineAI",
   publisher: "CineAI",
@@ -118,10 +108,10 @@ export default function RootLayout({
         <link rel="dns-prefetch" href="https://api.themoviedb.org" />
         <link rel="dns-prefetch" href="https://vercel.app" />
       </head>
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        {children}
+      <body className="antialiased">
+        <ICPProvider>
+          {children}
+        </ICPProvider>
       </body>
     </html>
   );

@@ -1,0 +1,38 @@
+{
+  "version": 1,
+  "canisters": {
+    "movie_reviews": {
+      "type": "motoko",
+      "main": "src/icp/movie_reviews/main.mo"
+    },
+    "cine_token": {
+      "type": "motoko",
+      "main": "src/icp/cine_token/main.mo"
+    },
+    "user_profiles": {
+      "type": "motoko",
+      "main": "src/icp/user_profiles/main.mo"
+    },
+    "cineai_frontend": {
+      "type": "assets",
+      "source": [".next/static"],
+      "dependencies": ["movie_reviews", "cine_token", "user_profiles"]
+    }
+  },
+  "networks": {
+    "local": {
+      "bind": "127.0.0.1:4943",
+      "type": "ephemeral"
+    },
+    "ic": {
+      "providers": ["https://ic0.app"],
+      "type": "persistent"
+    }
+  },
+  "defaults": {
+    "build": {
+      "args": "",
+      "packtool": ""
+    }
+  }
+}

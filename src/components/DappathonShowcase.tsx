@@ -7,7 +7,7 @@ interface ShowcaseProps {
   onClose: () => void;
 }
 
-export default function HackathonShowcase({ isVisible, onClose }: ShowcaseProps) {
+export default function DappathonShowcase({ isVisible, onClose }: ShowcaseProps) {
   const [currentFeature, setCurrentFeature] = useState(0);
   const [animationStep, setAnimationStep] = useState(0);
 
@@ -89,9 +89,9 @@ export default function HackathonShowcase({ isVisible, onClose }: ShowcaseProps)
               </div>
               <div>
                 <h1 className="text-3xl font-bold bg-gradient-to-r from-red-500 to-purple-500 bg-clip-text text-transparent">
-                  CineAI Hackathon Demo
+                  CineAI Dappathon Demo
                 </h1>
-                <p className="text-gray-400">AI in Action Hackathon 2025 - Advanced Movie Discovery Platform</p>
+                <p className="text-gray-400">Akwaaba Dappathon: Wave 2 - Web3 AI Movie Discovery Platform</p>
               </div>
             </div>
             <button
@@ -155,10 +155,10 @@ export default function HackathonShowcase({ isVisible, onClose }: ShowcaseProps)
               <div className="space-y-4">
                 {[
                   { icon: '🧠', title: 'Google Cloud Vertex AI', desc: '768-dimensional embeddings for semantic similarity' },
-                  { icon: '🔥', title: 'Google Cloud Firestore', desc: 'Real-time database for user preferences and history' },
-                  { icon: '🌍', title: 'Google Cloud Translation', desc: 'Multi-language movie search and discovery' },
+                  { icon: '⛓️', title: 'Internet Computer Protocol', desc: 'Decentralized blockchain for Web3 functionality' },
+                  { icon: '💰', title: 'CINE Token (ICRC-1)', desc: 'Real token rewards for community participation' },
+                  { icon: '🔌', title: 'Plug Wallet Integration', desc: 'Seamless Web3 wallet connection and transactions' },
                   { icon: '⚡', title: 'Next.js 14', desc: 'Modern React framework with server-side rendering' },
-                  { icon: '🎨', title: 'Tailwind CSS', desc: 'Responsive design with dark theme and animations' },
                   { icon: '🔍', title: 'TMDb API', desc: 'Access to millions of real movie records' }
                 ].map((tech, index) => (
                   <div
@@ -178,13 +178,38 @@ export default function HackathonShowcase({ isVisible, onClose }: ShowcaseProps)
             </div>
           </div>
 
+          {/* Dappathon Themes */}
+          <div className="mt-8 bg-gradient-to-r from-purple-900/30 to-blue-900/30 rounded-xl p-6 border border-purple-500/20">
+            <h3 className="text-xl font-bold text-white mb-4 flex items-center gap-2">
+              <span>🏆</span>
+              <span>Akwaaba Dappathon: Wave 2 Themes</span>
+            </h3>
+            <div className="grid md:grid-cols-3 gap-4">
+              <div className="bg-blue-500/10 p-4 rounded-lg border border-blue-500/20">
+                <div className="text-2xl mb-2">🤖</div>
+                <h4 className="text-blue-400 font-semibold mb-2">Artificial Intelligence</h4>
+                <p className="text-gray-300 text-sm">Advanced Google Cloud AI integration with semantic search and intelligent recommendations</p>
+              </div>
+              <div className="bg-green-500/10 p-4 rounded-lg border border-green-500/20">
+                <div className="text-2xl mb-2">💰</div>
+                <h4 className="text-green-400 font-semibold mb-2">Decentralized Finance</h4>
+                <p className="text-gray-300 text-sm">ICRC-1 CINE token with automated rewards and community-driven economics</p>
+              </div>
+              <div className="bg-purple-500/10 p-4 rounded-lg border border-purple-500/20">
+                <div className="text-2xl mb-2">💳</div>
+                <h4 className="text-purple-400 font-semibold mb-2">Digital Payments</h4>
+                <p className="text-gray-300 text-sm">Seamless Plug Wallet integration for instant token transactions and rewards</p>
+              </div>
+            </div>
+          </div>
+
           {/* Stats Dashboard */}
           <div className="mt-8 grid grid-cols-2 md:grid-cols-4 gap-4">
             {[
               { label: 'AI Models', value: '3+', icon: '🧠' },
-              { label: 'API Endpoints', value: '8+', icon: '⚡' },
+              { label: 'Smart Contracts', value: '3', icon: '⛓️' },
               { label: 'Movie Records', value: '1M+', icon: '🎬' },
-              { label: 'Analysis Types', value: '6', icon: '📊' }
+              { label: 'Token Rewards', value: '6', icon: '💰' }
             ].map((stat, index) => (
               <div
                 key={index}
@@ -206,7 +231,7 @@ export default function HackathonShowcase({ isVisible, onClose }: ShowcaseProps)
               🚀 Start Exploring CineAI
             </button>
             <p className="text-gray-400 text-sm mt-2">
-              Experience the future of AI-powered movie discovery
+              Experience the future of Web3 AI-powered movie discovery
             </p>
           </div>
         </div>

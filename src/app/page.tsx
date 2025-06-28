@@ -3,11 +3,13 @@
 import { useState, useEffect } from 'react';
 import SearchBar from '@/components/SearchBar';
 import MovieCard from '@/components/MovieCard';
-import HackathonShowcase from '@/components/HackathonShowcase';
+import DappathonShowcase from '@/components/DappathonShowcase';
 import AnalyticsDashboard from '@/components/AnalyticsDashboard';
 import SmartRecommendations from '@/components/SmartRecommendations';
 import MovieComparison from '@/components/MovieComparison';
 import { MovieFilters } from '@/components/FilterSidebar';
+import Web3Auth from '@/components/Web3Auth';
+import BlockchainReviews from '@/components/BlockchainReviews';
 
 import { Movie, SearchResult } from '@/lib/mongodb';
 // Using emoji icons instead of lucide-react for compatibility
@@ -29,7 +31,7 @@ export default function Home() {
     vectorQueries: 634,
     userSatisfaction: 94.7
   });
-  const [showHackathonDemo, setShowHackathonDemo] = useState(false);
+  const [showDappathonDemo, setShowDappathonDemo] = useState(false);
   const [selectedLanguage, setSelectedLanguage] = useState('en');
   const [showAnalytics, setShowAnalytics] = useState(false);
   const [showSmartRecommendations, setShowSmartRecommendations] = useState(false);
@@ -371,8 +373,13 @@ export default function Home() {
     <div className="min-h-screen bg-gradient-to-br from-gray-900 via-black to-gray-800">
       {/* Modern Header */}
       <header className="bg-gradient-to-r from-black via-gray-900 to-black border-b border-gray-700 backdrop-blur-lg">
-        <div className="max-w-7xl mx-auto px-4 py-4 sm:py-6">
-          <div className="text-center">
+        <div className="max-w-7xl mx-auto px-4 py-4 sm:py-6 relative">
+          {/* Web3 Auth - Responsive positioning */}
+          <div className="absolute top-2 right-2 sm:top-4 sm:right-4 z-50">
+            <Web3Auth />
+          </div>
+
+          <div className="text-center pt-12 sm:pt-0">
             <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-2 sm:mb-3 flex items-center justify-center gap-2 sm:gap-4">
               <span className="text-4xl sm:text-5xl lg:text-6xl">🎬</span>
               <span className="bg-gradient-to-r from-red-500 via-purple-500 to-pink-500 bg-clip-text text-transparent">
@@ -382,8 +389,10 @@ export default function Home() {
             </h1>
             <p className="text-gray-300 text-sm sm:text-lg lg:text-xl font-light max-w-3xl mx-auto px-2">
               Discover movies with <span className="text-purple-400 font-semibold">Google Cloud AI-powered semantic search</span>
-              <span className="hidden sm:inline"> and</span>
+              <span className="hidden sm:inline">,</span>
               <span className="text-red-400 font-semibold block sm:inline"> personalized recommendations</span>
+              <span className="hidden sm:inline">, and</span>
+              <span className="text-blue-400 font-semibold block sm:inline"> blockchain-verified reviews on ICP</span>
             </p>
 
             {/* Action Buttons */}
@@ -391,11 +400,11 @@ export default function Home() {
               {/* Mobile: Stacked Layout */}
               <div className="flex flex-col gap-3 sm:hidden">
                 <button
-                  onClick={() => setShowHackathonDemo(true)}
+                  onClick={() => setShowDappathonDemo(true)}
                   className="px-4 py-3 bg-gradient-to-r from-yellow-600 to-orange-600 text-white rounded-xl hover:from-yellow-700 hover:to-orange-700 transition-all duration-300 font-semibold shadow-lg hover:shadow-yellow-500/25 flex items-center justify-center gap-2 text-sm"
                 >
                   <span className="text-base">🏆</span>
-                  <span>Hackathon Demo</span>
+                  <span>Dappathon Demo</span>
                   <span className="text-xs bg-white/20 px-2 py-1 rounded-full">NEW</span>
                 </button>
 
@@ -421,11 +430,11 @@ export default function Home() {
               {/* Desktop: Horizontal Layout */}
               <div className="hidden sm:flex flex-wrap justify-center gap-3">
                 <button
-                  onClick={() => setShowHackathonDemo(true)}
+                  onClick={() => setShowDappathonDemo(true)}
                   className="px-6 py-3 bg-gradient-to-r from-yellow-600 to-orange-600 text-white rounded-xl hover:from-yellow-700 hover:to-orange-700 transition-all duration-300 font-semibold shadow-lg hover:shadow-yellow-500/25 transform hover:scale-105 flex items-center gap-2 text-base"
                 >
                   <span className="text-lg">🏆</span>
-                  <span>Hackathon Demo</span>
+                  <span>Dappathon Demo</span>
                   <span className="text-sm bg-white/20 px-2 py-1 rounded-full">NEW</span>
                 </button>
 
@@ -1026,6 +1035,12 @@ export default function Home() {
                 </div>
               )}
             </div>
+
+            {/* Blockchain Reviews Section */}
+            <BlockchainReviews
+              movieId={selectedMovie._id || selectedMovie.title}
+              movieTitle={selectedMovie.title}
+            />
           </section>
         )}
 
@@ -1054,7 +1069,7 @@ export default function Home() {
             <span className="text-green-400 font-semibold"> Google Cloud Translation API</span>
           </p>
           <p className="text-gray-500 text-sm">
-            🏆 Created for the AI in Action Hackathon 2025
+            🏆 Created for Akwaaba Dappathon: Wave 2 by ICP HUB Ghana
           </p>
           <div className="mt-6 flex flex-wrap items-center justify-center gap-4 sm:gap-6 text-xs sm:text-sm text-gray-400">
             <div className="flex items-center gap-2">
@@ -1073,10 +1088,10 @@ export default function Home() {
         </div>
       </footer>
 
-      {/* Hackathon Showcase Modal */}
-      <HackathonShowcase
-        isVisible={showHackathonDemo}
-        onClose={() => setShowHackathonDemo(false)}
+      {/* Dappathon Showcase Modal */}
+      <DappathonShowcase
+        isVisible={showDappathonDemo}
+        onClose={() => setShowDappathonDemo(false)}
       />
 
       {/* Analytics Dashboard */}
