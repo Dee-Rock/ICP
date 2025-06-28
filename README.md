@@ -3,7 +3,6 @@
 > **🏆 Akwaaba Dappathon: Wave 2 Project**
 > Revolutionary Web3 movie discovery platform combining advanced AI with Internet Computer Protocol (ICP) blockchain technology for decentralized reviews, token rewards, and immutable movie data.
 
-[![Live Demo](https://img.shields.io/badge/🚀_Live_Demo-cineai--fawn.vercel.app-blue?style=for-the-badge)](https://cineai-fawn.vercel.app)
 [![Next.js](https://img.shields.io/badge/Next.js-15-black?style=for-the-badge&logo=next.js)](https://nextjs.org/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.0-blue?style=for-the-badge&logo=typescript)](https://www.typescriptlang.org/)
 [![ICP](https://img.shields.io/badge/Internet_Computer-ICP-purple?style=for-the-badge&logo=internet-computer)](https://internetcomputer.org/)
