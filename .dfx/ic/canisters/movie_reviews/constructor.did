@@ -1,0 +1,55 @@
+type UserStats = 
+ record {
+   averageRating: float64;
+   helpfulVotes: nat;
+   reputation: nat;
+   totalReviews: nat;
+ };
+type UserId = principal;
+type ReviewInput = 
+ record {
+   content: text;
+   movieId: MovieId;
+   rating: nat8;
+   title: text;
+ };
+type ReviewId = text;
+type Review = 
+ record {
+   content: text;
+   helpfulVotes: nat;
+   id: ReviewId;
+   movieId: MovieId;
+   rating: nat8;
+   reportCount: nat;
+   timestamp: int;
+   title: text;
+   userId: UserId;
+   verified: bool;
+ };
+type Result_1 = 
+ variant {
+   err: text;
+   ok: ReviewId;
+ };
+type Result = 
+ variant {
+   err: text;
+   ok;
+ };
+type MovieId = text;
+service : {
+  createReview: (input: ReviewInput) -> (Result_1);
+  getAllReviews: () -> (vec Review) query;
+  getMovieRatingSummary: (movieId: MovieId) ->
+   (record {
+      averageRating: float64;
+      totalReviews: nat;
+    }) query;
+  getMovieReviews: (movieId: MovieId) -> (vec Review) query;
+  getReview: (reviewId: ReviewId) -> (opt Review) query;
+  getUserReviews: (userId: UserId) -> (vec Review) query;
+  getUserStats: (userId: UserId) -> (opt UserStats) query;
+  reportReview: (reviewId: ReviewId) -> (Result);
+  voteHelpful: (reviewId: ReviewId) -> (Result);
+}

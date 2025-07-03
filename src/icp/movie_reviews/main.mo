@@ -5,6 +5,9 @@ import Array "mo:base/Array";
 import Result "mo:base/Result";
 import Principal "mo:base/Principal";
 import Iter "mo:base/Iter";
+import Nat8 "mo:base/Nat8";
+import Nat "mo:base/Nat";
+import Float "mo:base/Float";
 
 actor MovieReviews {
     

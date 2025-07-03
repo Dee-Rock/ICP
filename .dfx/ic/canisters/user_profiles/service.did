@@ -1,0 +1,91 @@
+type WatchHistoryEntry = 
+ record {
+   completed: bool;
+   movieId: MovieId;
+   rating: opt nat8;
+   watchTime: opt nat;
+   watchedAt: int;
+ };
+type UserStats = 
+ record {
+   averageRating: float64;
+   daysActive: nat;
+   helpfulVotes: nat;
+   moviesWatched: nat;
+   tokensEarned: nat;
+   totalRatings: nat;
+   totalReviews: nat;
+ };
+type UserProfile = 
+ record {
+   bio: opt text;
+   createdAt: int;
+   favoriteGenres: vec text;
+   id: UserId;
+   isVerified: bool;
+   lastActive: int;
+   preferences: UserPreferences;
+   reputation: nat;
+   stats: UserStats;
+   username: opt text;
+   watchedMovies: vec MovieId;
+   watchlist: vec MovieId;
+ };
+type UserPreferences = 
+ record {
+   aiRecommendations: bool;
+   contentRating: text;
+   emailNotifications: bool;
+   preferredLanguages: vec text;
+   publicProfile: bool;
+   shareWatchHistory: bool;
+ };
+type UserId = principal;
+type Result_1 = 
+ variant {
+   err: text;
+   ok: UserProfile;
+ };
+type Result = 
+ variant {
+   err: text;
+   ok;
+ };
+type ProfileUpdate = 
+ record {
+   bio: opt text;
+   favoriteGenres: opt vec text;
+   preferences: opt UserPreferences;
+   username: opt text;
+ };
+type MovieId = text;
+service : {
+  addToWatchHistory: (movieId: MovieId, rating: opt nat8, watchTime: 
+   opt nat, completed: bool) -> (Result);
+  addToWatchlist: (movieId: MovieId) -> (Result);
+  followUser: (targetUserId: UserId) -> (Result);
+  getFollowers: (userId: UserId) -> (vec UserId) query;
+  getFollowing: (userId: UserId) -> (vec UserId) query;
+  getOrCreateProfile: () -> (UserProfile);
+  getPlatformStats: () ->
+   (record {
+      activeUsers: nat;
+      totalMoviesWatched: nat;
+      totalUsers: nat;
+      totalWatchlistItems: nat;
+    }) query;
+  getProfile: (userId: UserId) -> (opt UserProfile) query;
+  getProfileByUsername: (username: text) -> (opt UserProfile) query;
+  getWatchHistory: (userId: UserId) -> (vec WatchHistoryEntry) query;
+  removeFromWatchlist: (movieId: MovieId) -> (Result);
+  unfollowUser: (targetUserId: UserId) -> (Result);
+  updateProfile: (update: ProfileUpdate) -> (Result_1);
+  updateUserStats: (userId: UserId, statsUpdate:
+   record {
+     averageRating: opt float64;
+     helpfulVotes: opt nat;
+     tokensEarned: opt nat;
+     totalRatings: opt nat;
+     totalReviews: opt nat;
+   }) -> (Result);
+}
