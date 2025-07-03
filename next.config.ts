@@ -3,28 +3,17 @@ import type { NextConfig } from "next";
 const nextConfig: NextConfig = {
   images: {
     remotePatterns: [
-      {
-        protocol: 'https',
-        hostname: 'm.media-amazon.com',
-        port: '',
-        pathname: '/images/**',
-      },
-      {
-        protocol: 'https',
-        hostname: 'image.tmdb.org',
-        port: '',
-        pathname: '/t/p/**',
-      },
-      {
-        protocol: 'https',
-        hostname: 'via.placeholder.com',
-        port: '',
-        pathname: '/**',
-      },
+      new URL("https://m.media-amazon.com/**"),
+      new URL("https://image.tmdb.org/**"),
+      new URL("https://via.placeholder.com/**"),
     ],
   },
+
   // Deployment optimization
-  serverExternalPackages: ['@google-cloud/firestore', '@google-cloud/translate'],
+  serverExternalPackages: [
+    "@google-cloud/firestore",
+    "@google-cloud/translate",
+  ],
   eslint: {
     ignoreDuringBuilds: true,
   },

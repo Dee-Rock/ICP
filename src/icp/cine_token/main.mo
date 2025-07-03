@@ -54,7 +54,7 @@ actor CineToken {
     let totalSupply: Balance = 1_000_000_000_000_000;
 
     // State
-    private stable var owner: Principal = Principal.fromText("rdmx6-jaaaa-aaaah-qdrqq-cai"); // Replace with actual owner
+    private stable var owner: Principal = Principal.fromText("taxkf-xu636-ea7he-6k3nk-5gk2i-p4qxr-uvn3u-mpzvl-5nf3l-gleoo-3qe"); // Replace with actual owner
     private var balances = Map.HashMap<Account, Balance>(100, Principal.equal, Principal.hash);
     private var allowances = Map.HashMap<(Account, Account), Balance>(
         100,

@@ -1,0 +1,80 @@
+type TransferResult = 
+ variant {
+   err: TransferError;
+   ok: Balance;
+ };
+type TransferError = 
+ variant {
+   InsufficientBalance;
+   InvalidAccount;
+   Other: text;
+   Unauthorized;
+ };
+type TransferArgs = 
+ record {
+   amount: Balance;
+   memo: opt text;
+   to: Account;
+ };
+type RewardType = 
+ variant {
+   Achievement;
+   DailyLogin;
+   HelpfulVote;
+   MovieReview;
+   QualityReview;
+   Referral;
+ };
+type RewardTransaction = 
+ record {
+   amount: Balance;
+   description: text;
+   id: nat;
+   recipient: Account;
+   rewardType: RewardType;
+   timestamp: int;
+ };
+type Result_1 = 
+ variant {
+   err: text;
+   ok: Balance;
+ };
+type Result = 
+ variant {
+   err: text;
+   ok;
+ };
+type Balance = nat;
+type Account = principal;
+service : {
+  batchRewardUsers: (rewards: vec record {
+                                    Account;
+                                    RewardType;
+                                    text;
+                                  }) -> (vec Result_1);
+  getAllBalances: () -> (vec record {
+                               Account;
+                               Balance;
+                             }) query;
+  getOwner: () -> (principal) query;
+  getRewardStats: () ->
+   (record {
+      rewardsByType: vec record {
+                           RewardType;
+                           nat;
+                         };
+      totalRewardsDistributed: Balance;
+      totalTransactions: nat;
+    }) query;
+  getTotalRewardsEarned: (user: Account) -> (Balance);
+  getUserRewardHistory: (user: Account) -> (vec RewardTransaction) query;
+  icrc1_balance_of: (account: Account) -> (Balance) query;
+  icrc1_decimals: () -> (nat8) query;
+  icrc1_name: () -> (text) query;
+  icrc1_symbol: () -> (text) query;
+  icrc1_total_supply: () -> (Balance) query;
+  icrc1_transfer: (args: TransferArgs) -> (TransferResult);
+  rewardUser: (recipient: Account, rewardType: RewardType, description:
+   text) -> (Result_1);
+  setOwner: (newOwner: principal) -> (Result);
+}
